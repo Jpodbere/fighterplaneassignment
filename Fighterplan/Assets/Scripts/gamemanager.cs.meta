@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: bc1d5913998e0cf46bfd58d75ddc98c6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerPrefab: {fileID: 2239699458382588144, guid: 343aa820d3bf5a64584e1fb04cb144a7, type: 3}
+  - enemyOnePrefab: {fileID: 5125442118213465424, guid: d9377f490d151e84ba48877465c48e61, type: 3}
+  - enemyTwoPrefab: {fileID: 4535861385807280266, guid: 812e864fba0c39e409228b7f8ad06d85, type: 3}
+  - cloudPrefab: {fileID: 5133262241792546679, guid: e49aabf5eea01fa4d8a09f8b217ed344, type: 3}
+  - coinPrefab: {fileID: 1449237667794634848, guid: ba5a412f4d4d61a48920fa9b565b47dd, type: 3}
+  - livesText: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

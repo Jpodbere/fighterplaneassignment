@@ -9,23 +9,39 @@ public class Player : MonoBehaviour
     //2. data type: int, float, bool, string
     //3. variable name: camelCase
     //4. value: optional
-
+    public int lives;
     private float playerSpeed;
     private float horizontalInput;
+    private GameManager gameManager;
+
     //private float verticalInput;
 
     private float horizontalScreenLimit = 9.5f;
     private float verticalScreenLimit = 6.5f;
 
     public GameObject bulletPrefab;
-
+    public GameObject explosionPrefab;
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        lives = 3;
         playerSpeed = 6f;
+        gameManager.ChangeLivesText(lives);
         //This function is called at the start of the game
 
     }
-
+    public void LoseALife()
+    {
+        //lives = lives - 1;
+        //lives -= 1;
+        lives--;
+        gameManager.ChangeLivesText(lives);
+        if (lives == 0)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+    }
     void Update()
     {
         //This function is called every frame; 60 frames/second
