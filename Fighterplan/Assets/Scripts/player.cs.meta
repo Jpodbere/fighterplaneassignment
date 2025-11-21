@@ -4,8 +4,15 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - shieldVisual: {instanceID: 0}
   - bulletPrefab: {fileID: 7765632634094900387, guid: 9aba1eeaf27391f44a519f4469fb9834, type: 3}
   - explosionPrefab: {fileID: 7116444588847383329, guid: 883ecae41807d884cb339201a5d19d3a, type: 3}
+  - sfxSource: {instanceID: 0}
+  - shieldOnClip: {fileID: 8300000, guid: 141f56822ac13a247972262c1466489b, type: 3}
+  - shieldOffClip: {fileID: 8300000, guid: a77bde41acdb13047b873487370b39e2, type: 3}
+  - Explosion: {instanceID: 0}
+  - Coin: {instanceID: 0}
+  - Shot: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

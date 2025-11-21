@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject explosionPrefab;
-
     private GameManager gameManager;
+    public AudioClip Explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D whatDidIHit)
     {
-        Debug.Log("Enemy hit: " + whatDidIHit.name + " | tag: " + whatDidIHit.tag);
         if (whatDidIHit.tag == "Player")
         {
             whatDidIHit.GetComponent<Player>().LoseALife();
@@ -36,6 +35,10 @@ public class Enemy : MonoBehaviour
             Destroy(whatDidIHit.gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             gameManager.addScore(5);
+            if (Explosion != null)
+            {
+                AudioSource.PlayClipAtPoint(Explosion, transform.position);
+            }
             Destroy(this.gameObject);
         }
     }

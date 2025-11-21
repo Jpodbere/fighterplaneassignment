@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public GameObject enemyTwoPrefab;
     public GameObject cloudPrefab;
     public GameObject coinPrefab;
+    public GameObject shieldPowerUpPrefab;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
     public float horizontalScreenSize;
     public float verticalScreenSize;
+    
     public int score;
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 2, 3);
         InvokeRepeating("CreateCoin", 1, 10);
+        InvokeRepeating("CreateShieldPowerUp", 5, 15);
     }
 
     // Update is called once per frame
@@ -56,6 +59,14 @@ public class GameManager : MonoBehaviour
             Instantiate(cloudPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize), Random.Range(-verticalScreenSize, verticalScreenSize), 0), Quaternion.identity);
         }
 
+    }
+    void CreateShieldPowerUp()
+    {
+        Instantiate(
+            shieldPowerUpPrefab,
+            new Vector3(Random.Range(-9f, 9f), 6.5f, 0),
+            Quaternion.identity
+        );
     }
     public void addScore(int earnedScore)
     {

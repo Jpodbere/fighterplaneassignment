@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a0baf5b12b416479d309917653443a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
+  CoinSound: {fileID: 8300000, guid: 83f0927968da1bd42a0002de510af6ad, type: 3}
 --- !u!50 &-3111407056407623891
 Rigidbody2D:
   serializedVersion: 5

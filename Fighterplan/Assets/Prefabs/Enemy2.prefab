@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
   explosionPrefab: {fileID: 7116444588847383329, guid: 883ecae41807d884cb339201a5d19d3a, type: 3}
+  Explosion: {fileID: 8300000, guid: 3c371bc375a1c734d831490f14849a8c, type: 3}
 --- !u!61 &2254642132640930110
 BoxCollider2D:
   m_ObjectHideFlags: 0

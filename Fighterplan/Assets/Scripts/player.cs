@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //how to define a variable
-    //1. access modifier: public or private
-    //2. data type: int, float, bool, string
-    //3. variable name: camelCase
-    //4. value: optional
+    public bool isShieldActive = false;
+    public float shieldDuration = 5f;
+    private float shieldTimer;
     public int lives;
     private float playerSpeed;
     private float horizontalInput;
@@ -19,8 +17,17 @@ public class Player : MonoBehaviour
     private float horizontalScreenLimit = 9.5f;
     private float verticalScreenLimit = 6.5f;
 
+    public GameObject shieldVisual;
     public GameObject bulletPrefab;
     public GameObject explosionPrefab;
+
+    //Sounds
+    public AudioSource sfxSource;
+    public AudioClip shieldOnClip;
+    public AudioClip shieldOffClip;
+    public AudioClip Explosion;
+    public AudioClip CoinSound;
+    public AudioClip Shot;
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -32,14 +39,55 @@ public class Player : MonoBehaviour
     }
     public void LoseALife()
     {
-        //lives = lives - 1;
-        //lives -= 1;
+        if (isShieldActive)
+        {
+            DeactivateShield(); 
+            return;
+        }
+        if (sfxSource != null && Explosion != null)
+        {
+            sfxSource.PlayOneShot(Explosion);
+        }
+
         lives--;
         gameManager.ChangeLivesText(lives);
+
         if (lives == 0)
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            sfxSource.PlayOneShot(Explosion);
             Destroy(this.gameObject);
+        }
+        
+    }
+    public void ActivateShield()
+    {
+        isShieldActive = true;
+        shieldTimer = shieldDuration;
+
+        if (shieldVisual != null)
+        {
+            shieldVisual.SetActive(true);
+        }
+
+        if (sfxSource != null && shieldOnClip != null)
+        {
+            sfxSource.PlayOneShot(shieldOnClip);  
+        }
+    }
+
+    public void DeactivateShield()
+    {
+        isShieldActive = false;
+
+        if (shieldVisual != null)
+        {
+            shieldVisual.SetActive(false);
+        }
+
+        if (sfxSource != null && shieldOffClip != null)
+        {
+            sfxSource.PlayOneShot(shieldOffClip);
         }
     }
     void Update()
@@ -47,7 +95,14 @@ public class Player : MonoBehaviour
         //This function is called every frame; 60 frames/second
         Movement();
         Shooting();
-
+        if (isShieldActive)
+        {
+            shieldTimer -= Time.deltaTime;
+            if (shieldTimer <= 0f)
+            {
+                DeactivateShield();
+            }
+        }
     }
 
     void Shooting()
@@ -56,6 +111,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            if (sfxSource != null && Shot != null)
+            {
+                sfxSource.PlayOneShot(Shot);
+            }
         }
     }
 

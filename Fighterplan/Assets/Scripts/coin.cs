@@ -5,6 +5,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     private GameManager gameManager;
+    public AudioClip CoinSound;
 
     void Start()
     {
@@ -25,7 +26,11 @@ public class Coin : MonoBehaviour
         if (whatDidIHit.tag == "Player")
         {
             gameManager.addScore(1);
-            Destroy(this.gameObject);
+            if (CoinSound != null)
+            {
+                AudioSource.PlayClipAtPoint(CoinSound, transform.position);
+            }
+        }
+        Destroy(this.gameObject);
         }
     }
-}

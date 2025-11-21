@@ -6,6 +6,7 @@ public class Enemy2 : MonoBehaviour
 {
     public GameObject explosionPrefab;
     private GameManager gameManager;
+    public AudioClip Explosion;
     // Update is called once per frame
     void Start()
     {
@@ -31,6 +32,10 @@ public class Enemy2 : MonoBehaviour
         {
             Destroy(whatDidIHit.gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            if (Explosion != null)
+            {
+                AudioSource.PlayClipAtPoint(Explosion, transform.position);
+            }
             gameManager.addScore(5);
             Destroy(this.gameObject);
         }
